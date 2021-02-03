@@ -9,7 +9,7 @@ html, body, #map {
 
 .navbar{
     background-color: #009490 ;
-    min-height: 100px;
+    height: 50px !important;
     box-shadow: 0 2px 4px 0 black; 
     
 }
@@ -21,8 +21,8 @@ html, body, #map {
     color:#004e59;
 }
 .logo-brand{
-    min-height: 60px;
-    max-height: 80px;
+    min-height: 30px;
+    max-height: 40px;
 }
 .navbar-toggler{
     font-size: 40px;
@@ -87,7 +87,13 @@ table{
 }
 
 @media (min-width: 768px) {  
-    
+    .logo-brand{
+        min-height: 60px;
+        max-height: 80px;
+    }
+    .navbar{
+        min-height: 100px;
+    }
     .map table{
         top:140px;
         left:10%;
@@ -190,4 +196,5 @@ button{
     border: 0px;
     border-radius: 20px;
 }
+
  }

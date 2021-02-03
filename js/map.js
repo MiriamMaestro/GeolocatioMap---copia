@@ -212,7 +212,7 @@ $(document).ready(() => {
                   
                },
                 success: function(result) {
-                  alert('AJAX call was successful!');
+                  //alert('AJAX call was successful!');
                   var myStyle = {
                     "color": "#fff200",
                     "weight": 5,
