@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/opencagedata/leaflet-opencage-search@1.4.1/dist/css/L.Control.OpenCageData.Search.min.css" />
+    <link rel="stylesheet" href="css/css.css" rel="stylesheet">
+    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="">
+    <title>Hello, world!</title>
+
+    <script src="http://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+    <script src="js/leaflet-providers.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/opencagedata/leaflet-opencage-search@1.4.1/dist/js/L.Control.OpenCageSearch.min.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="#"><img src="media/LigthOn.png" class="logo-brand" alt=""></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="icon ion-md-menu"></i>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mb-2 mb-lg-0 ">
+              <li class="nav-item" id="wikipedia">
+                <a class="nav-link" aria-current="page" href="#">Wikipedia</a>
+              </li>
+              <li class="nav-item" id="countryInformation"> 
+                <a class="nav-link" href="#">Country Information</a>
+              </li>
+              <li class="nav-item" id="weather">
+                <a class="nav-link" href="#">Weather</a>
+              </li>
+
+            </ul>
+            
+          </div>
+        </div>
+      </nav>
+     
+        
+      <button type="button" class="icon-btn" id="weather-btn"><img src="media/23529-2-weather-hd.png" id="weather-button"></button>
+      <button type="button" class="icon-btn" id="wikipedia-btn"><img src="media/wiki.png" alt="wikipedia"id="wiki-button"></button>
+      <button type="button" class="icon-btn" id="information-btn"><img src="media/Information.png" alt="Information" id="inf-button"></button>
+ 
+
+      <div id="map" class="map">
+      <table class="tabla-weather">
+            <thead>
+              <tr class="">
+                <th class="" scope="col" colspan="2" id="th-1">Weather</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="">
+                <th class="" scope="row">Temperature</th>
+                <td class="" id="temperature"></td>
+              </tr>
+              <tr class="">
+                <th class="" scope="row">Temp Max</th>
+                <td class="" id="temp-max"></td>
+              </tr>
+              <tr class="">
+                <th class="" scope="row">Temp Min</th>
+                <td class="" id="temp-min"></td>
+              </tr>
+              <tr class="">
+                <th class="" scope="row">Humidity</th>
+                <td class="" id="humidity"></td>
+              </tr>
+              <tr class="">
+                <th class="" scope="row">Pressure</th>
+                <td class="" id="pressure"></td>
+              </tr>
+              <tr class="">
+                <th class="" scope="row">Feels like</th>
+                <td class="" id="feels-like"></td>
+              </tr>
+              <tr class="">
+                <th class="" scope="row">Description</th>
+                <td class="" id="description"></td>
+              </tr>
+              <tr class="">
+                <th class="" scope="row">City</th>
+                <td class="" id="city"></td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="tabla-information" id="">
+            <thead>
+              <tr>
+                <th scope="col" colspan="2" id="th-1">Country Information</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Country</th>
+                <td id="countryInf"></td>
+              </tr>
+              <tr>
+                <th scope="row">Capital</th>
+                <td id="capitalInf"></td>
+              </tr>
+              <tr>
+                <th scope="row">Area km2</th>
+                <td id="areaInf"></td>
+              </tr>
+              <tr>
+                <th scope="row">Currency</th>
+                <td id="currencyInf"></td>
+              </tr>
+              <tr>
+                <th scope="row">Continent</th>
+                <td id="continentInf"></td>
+              </tr>
+              <tr>
+                <th scope="row">Population</th>
+                <td id="populationInf"></td>
+              </tr>
+  
+            </tbody>
+          </table>
+        </div>
+    <!-- Optional JavaScript; choose one of the two! -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="js/map.js"></script>
+  </body>
+</html>
