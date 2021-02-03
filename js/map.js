@@ -1,3 +1,8 @@
+$(window).on('load', function () {    if ($('#preloader').length) {
+  $('#preloader').delay(100).fadeOut('slow', function () {
+  $(this).remove();
+});
+}})
 var map = L.map('map').fitWorld();
 
 L.tileLayer.provider('MapBox', {
