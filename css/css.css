@@ -135,7 +135,7 @@ table{
 @media (min-width: 768px) {  
     
     .map table{
-        top:140px;
+        top:20px;
         left:10%;
         right: 0;
         bottom: 0;

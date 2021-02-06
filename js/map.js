@@ -1,3 +1,6 @@
+var latitudecurrent;
+var longitudecurrent;
+
 $(window).on('load', function () {    if ($('#preloader').length) {
   $('#preloader').delay(100).fadeOut('slow', function () {
   $(this).remove();
@@ -35,6 +38,7 @@ function onLocationError(e) {
 map.on('locationfound', onLocationFound);
 map.on('locationerror', onLocationError);
 
+//map.locate({setView: true, maxZoom: 8});
 map.locate({setView: true, maxZoom: 8});
 
 var options = {
@@ -78,8 +82,8 @@ $btnRun.on('click', () => {
     type: 'POST',
     dataType: 'json',
     data: {
-      lat: lat ,
-      long: long
+      lat: (lat == "") ? latitudecurrent:  lat  ,
+      long: (long == "") ? longitudecurrent:  long 
      },
     success: function(result) {
       console.log(result);
@@ -89,6 +93,7 @@ $btnRun.on('click', () => {
             dec = valNum-273.15;
             return parseFloat(dec).toFixed(0);
           }
+          
           var tiemp = result['data']['main']['temp'];
           var tempM =result['data']['main']['temp_max'];
           var tempm =result['data']['main']['temp_min'];
@@ -116,7 +121,65 @@ $btnRun.on('click', () => {
 
 //Information
 
+$(document).ready(() => {
+    const $btnInf = $('#countryInformation');
   
+  $btnInf.on('click', () => {
+    var promise = $.ajax(
+      {
+        url: "php/countryCode.php",
+        type: 'POST',
+        dataType: 'json',
+        data: {
+  
+            lat:(lat == "") ? latitudecurrent:  lat ,
+            long: (long == "") ? longitudecurrent:  long 
+         },
+          success: function(result) {
+            console.log(result);
+            if (result.status.name == "ok") {
+              $currentIso = result['data']['countryCode'];
+             
+            }
+           
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            console.log("it´s not working");
+        }
+       
+        });
+       
+    promise.then(function(){
+    $.ajax({
+    url: "php/information.php",
+    type: 'POST',
+    dataType: 'json',
+    data: {
+      currentIso: $currentIso
+      
+     },
+    success: function(result) {
+      console.log(result);
+        if (result.status.name == "ok") {
+  
+            $('#countryInf').html(result['data']['geonames'][0]['countryName']);
+            $('#currencyInf').html(result['data']['geonames'][0]['currencyCode']);
+            $('#populationInf').html(result['data']['geonames'][0]['population']);
+            $('#capitalInf').html(result['data']['geonames'][0]['capital']);
+            $('#continentInf').html(result['data']['geonames'][0]['continentName']);
+            $('#areaInf').html(result['data']['geonames'][0]['areaInSqKm']);
+  
+        }
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+        console.log("it´s not working");
+      },
+    })
+  });
+  });
+  });
+
+/*  
 $(document).ready(() => {
     const $btnInf = $('#countryInformation');
   
@@ -174,67 +237,101 @@ $(document).ready(() => {
   });
   });
   });
- 
+ */
     $('#countryInformation').on('click', () => {
       $('.tabla-information').toggle();
     });
+function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+
+
+      } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+      }
+    }
+
+function showPosition(position) {
+      var latitudec =  position.coords.latitude;
+      latitudecurrent = latitudec;
+      var longitudec = position.coords.longitude;
+      longitudecurrent = longitudec;
+      //alert("Latitude: " + latitudecurrent +      "<br>Longitude: " + longitudecurrent);
+      //alert("Latitude: " + latitudec +      "<br>Longitude: " + longitudec);
+    }
+    $(window).on("load", getLocation);
+
+    
 
 //current country
 $(document).ready(() => {
     $(window).on("load", ()=>{
-      var promise = $.ajax(
-        {
-          url: "php/currentLocation.php",
-          type: 'POST',
-          dataType: 'json',
-          data: {
-    
-              currentLat: currentLat ,
-              currentLong: currentLong
-           },
-            success: function(result) {
-              console.log(result);
-              if (result.status.name == "ok") {
-                $currentCountry = result['data'][0]['components']['country'];
-  
-              }
-             
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-              console.log("it´s not working");
-          }
+      
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position){
          
-          });
-          promise.then(function(){
-            //
-            $.ajax({
-              url: "php/codigo.php",
+          var promise = $.ajax(
+            {
+              url: "php/currentLocation.php",
               type: 'POST',
               dataType: 'json',
               data: {
         
-                  currentCountry: $currentCountry,
-                  
+                  currentLat: position.coords.latitude,
+                  currentLong: position.coords.longitude
                },
+               
+    
                 success: function(result) {
-                  //alert('AJAX call was successful!');
-                  var myStyle = {
-                    "color": "#fff200",
-                    "weight": 5,
-                    "opacity": 1
-                  };
-                  L.geoJSON(result,{
-                    style: myStyle
-                  }).addTo(map)
+                  console.log(result);
+                  if (result.status.name == "ok") {
+                    $currentCountry = result['data'][0]['components']['country'];
+      
+                  }
+                 
                 },
-                error: function() {
-                  alert('There was some error performing the AJAX call!');
-                },
-            })
+                error: function(jqXHR, textStatus, errorThrown) {
+                  console.log("it´s not working");
+              }
+             
+              });
+              promise.then(function(){
+                //
+                $.ajax({
+                  url: "php/codigo.php",
+                  type: 'POST',
+                  dataType: 'json',
+                  data: {
+            
+                      currentCountry: $currentCountry,
+                      
+                   },
+                    success: function(result) {
+                      //alert('AJAX call was successful!');
+
+                      var myStyle = {
+                        "color": "#fff200",
+                        "weight": 5,
+                        "opacity": 1
+                      };
+    
+                      border = L.geoJSON(result,{
+                        style: myStyle
+                      }).addTo(map);
+                      
+                      map.fitBounds(border.getBounds());
+
+                    },
+                    error: function() {
+                      alert('There was some error performing the AJAX call!');
+                    },
+                })
+            });
         });
-    });
-  
-  
+      
+        }
+     
+      });
   });
 
   //wikipedia 
