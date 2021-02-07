@@ -108,6 +108,17 @@ table{
     -webkit-animation: animate-preloader 1s linear infinite;
     animation: animate-preloader 1s linear infinite;
     }
+#inlineFormCustomSelect{
+    z-index: 1000;
+    position:absolute!important;
+ 
+}
+select {
+    top:20px;
+    left:10%;
+    right: 0;
+    bottom: 0;
+}
 @-webkit-keyframes animate-preloader {
     0% {
     -webkit-transform: rotate(0deg);

@@ -7,7 +7,30 @@ $(window).on('load', function () {    if ($('#preloader').length) {
 });
 }})
 var map = L.map('map').fitWorld();
+L.tileLayer.provider('MapBox', {
+  id: 'mapbox/streets-v11',
+  accessToken: 'pk.eyJ1IjoieW9zb3ltYWlyaW0iLCJhIjoiY2trOGoyb2oxMDk2eDJ2czlzNm0wbnVmaSJ9.HvIfpKYqyZHeCNZPIpPSaw'
+}).addTo(map);
 
+function onLocationFound(e) {
+  var radius = e.accuracy / 2;
+
+  L.marker(e.latlng).addTo(map)
+  .bindPopup("You are here")
+      
+  L.circle(e.latlng, radius).addTo(map);
+
+}
+function onLocationError(e) {
+  alert(e.message);
+}
+
+
+map.on('locationfound', onLocationFound);
+map.on('locationerror', onLocationError);
+map.locate({setView: false});
+
+/*
 L.tileLayer.provider('MapBox', {
     id: 'mapbox/streets-v11',
     accessToken: 'pk.eyJ1IjoieW9zb3ltYWlyaW0iLCJhIjoiY2trOGoyb2oxMDk2eDJ2czlzNm0wbnVmaSJ9.HvIfpKYqyZHeCNZPIpPSaw'
@@ -40,16 +63,16 @@ map.on('locationerror', onLocationError);
 
 //map.locate({setView: true, maxZoom: 8});
 map.locate({setView: true, maxZoom: 8});
+*/
 
 var options = {
     key: '1241387f14a84f768dc7bac0933c0a72',
     limit: 10,
     proximity: '51.52255, -0.10249' // favour results near here
   };
-  var geocoder = L.Control.OpenCageSearch.geocoder(options);
-  var control = L.Control.openCageSearch(options).addTo(map);
+  //var geocoder = L.Control.OpenCageSearch.geocoder(options);
+  //var control = L.Control.openCageSearch(options).addTo(map);
   var marker;
-
 
 
 map.on('click', function(e) {
@@ -352,8 +375,22 @@ $(document).ready(() => {
     //$('.wikipedia').on('click',enablewikipedia);
     //$('#wikipedia').attr("disabled", true);
   }
+  var wikiIcon = L.icon({
+    iconUrl: 'media/wiki.png',
+    iconSize: [20, 20],});
+  var london = L.marker([51.5, -0.09], {icon: wikiIcon}).bindPopup('London: <a href="https://en.wikipedia.org/wiki/London">Wikipedia link</a>');
+      oxford = L.marker([51.75, -1.25], {icon: wikiIcon}).bindPopup('Oxford: <a href="https://en.wikipedia.org/wiki/Oxford">Wikipedia link</a>');
+      manchester = L.marker([53.47, -2.24], {icon: wikiIcon}).bindPopup('Manchester: <a href="https://en.wikipedia.org/wiki/Manchester">Wikipedia link</a>');
+      birmigham = L.marker([52.48, -1.90], {icon: wikiIcon}).bindPopup('Birmingham: <a href="https://en.wikipedia.org/wiki/Birmingham">Wikipedia link</a>');
+      edimburgh= L.marker([55.95, -3.18], {icon: wikiIcon}).bindPopup('Edinburgh: <a href="https://en.wikipedia.org/wiki/Edinburgh">Wikipedia link</a>');
+      glasgow = L.marker([55.86, -4.25], {icon: wikiIcon}).bindPopup('Glasgow: <a href="https://en.wikipedia.org/wiki/Glasgow">Wikipedia link</a>');
+      dublin = L.marker([53.35, -6.26], {icon: wikiIcon}).bindPopup('Dublin: <a href="https://en.wikipedia.org/wiki/Dublin">Wikipedia link</a>');
+      belfast = L.marker([54.60, -5.92], {icon: wikiIcon}).bindPopup('Belfast: <a href="https://en.wikipedia.org/wiki/Belfast">Wikipedia link</a>');
+  var cities = L.layerGroup([london, oxford, manchester,birmigham, edimburgh, glasgow, dublin, belfast]);
+cities.addTo(map);
+
   
-  $('#wikipedia').on('click',addMarker);
+  //$('#wikipedia').on('click',addMarker);
 
   
 $('#weather-btn').click(function(){
