@@ -419,7 +419,7 @@ $(window).on("load", ()=>{
               
                 for (i=0; i<result['data']['features']['features'].length ; i++) {
                   var tag = document.createElement('option');
-                  tag.value= result['data']['features']['features'][i]["properties"]["name"] ;
+                  tag.value= result['data']['features']['features'][i]["properties"]["iso_a2"] ;
                   tag.text = result['data']['features']['features'][i]["properties"]["name"] ;
                   var element = document.getElementById('inlineFormCustomSelect');
                   element.appendChild(tag);
