@@ -16,33 +16,7 @@
 
  
 
-    $countryBorders = json_decode(file_get_contents("countryBorders.geo.json"), true);
-
- 
-
-    $border = null;
-
- 
-
-    foreach ($countryBorders['features'] as $feature) {
-
- 
-
-        if ($feature["properties"]["iso_a2"] ==  $_REQUEST['countryCode']) {
-
- 
-
-            $border = $feature;
-
-            break;
-
-        
-
-        }
-
-        
-
-    }
+    $countryBorders = json_decode(file_get_contents("../js/countryBorders.geo.json"), true);
 
  
 
@@ -54,7 +28,7 @@
 
     $output['status']['executedIn'] = intval((microtime(true) - $executionStartTime) * 1000) . " ms";
 
-    $output['data']['border'] = $border;
+    $output['data']['features'] =  $countryBorders;
 
     header('Content-Type: application/json; charset=UTF-8');
 

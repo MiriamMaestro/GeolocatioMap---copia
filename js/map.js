@@ -70,7 +70,7 @@ var options = {
     limit: 10,
     proximity: '51.52255, -0.10249' // favour results near here
   };
-  //var geocoder = L.Control.OpenCageSearch.geocoder(options);
+  var geocoder = L.Control.OpenCageSearch.geocoder(options);
   //var control = L.Control.openCageSearch(options).addTo(map);
   var marker;
 
@@ -402,3 +402,37 @@ $('#information-btn').click(function(){
 $('#wikipedia-btn').click(function(){
   $('#wikipedia').click();
 });
+
+
+
+
+
+$(window).on("load", ()=>{
+      
+ $.ajax(
+        {
+          url: "php/border.php",
+          type: 'POST',
+          dataType: 'json',    
+          success: function(result) {
+              console.log(result);
+              
+                for (i=0; i<result['data']['features']['features'].length ; i++) {
+                  var tag = document.createElement('option');
+                  tag.value= result['data']['features']['features'][i]["properties"]["name"] ;
+                  tag.text = result['data']['features']['features'][i]["properties"]["name"] ;
+                  var element = document.getElementById('inlineFormCustomSelect');
+                  element.appendChild(tag);
+                  
+              }
+
+
+            
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+              console.log("it´s not working");
+          }
+         
+          });
+        });
+      

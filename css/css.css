@@ -9,7 +9,7 @@ html, body {
 #map{
     height: calc(100% – 106px) !important;
     width: 100%;
-
+    height: 83%;
     height: -moz-calc(100% - 106px);
     height: -webkit-calc(100% - 106px);
 }
@@ -111,6 +111,8 @@ table{
 #inlineFormCustomSelect{
     z-index: 1000;
     position:absolute!important;
+    height: 50px;
+    width: 200px;
  
 }
 select {
