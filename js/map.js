@@ -32,6 +32,7 @@ map.locate({setView: false});
 
 $(document).ready(() => {
   const $btnRun = $('#weather');
+  //var isoC = $( "#inlineFormCustomSelect" ).val();
 
 $btnRun.on('click', () => {
   $.ajax({
@@ -39,7 +40,8 @@ $btnRun.on('click', () => {
   type: 'POST',
   dataType: 'json',
   data: {
-    iso: $( "#inlineFormCustomSelect" ).val(),
+   // iso: (isoC= "") ? currentIso: $isoC,
+   iso: $( "#inlineFormCustomSelect option:selected" ).text(),
   },
   success: function(result) {
     console.log(result);
@@ -77,122 +79,37 @@ $('.tabla-weather').toggle();
 //Information
 
 $(document).ready(() => {
-    const $btnInf = $('#countryInformation');
-  
-  $btnInf.on('click', () => {
-    var promise = $.ajax(
-      {
-        url: "php/countryCode.php",
-        type: 'POST',
-        dataType: 'json',
-        data: {
-  
-            lat:(lat == "") ? latitudecurrent:  lat ,
-            long: (long == "") ? longitudecurrent:  long 
-         },
-          success: function(result) {
-            console.log(result);
-            if (result.status.name == "ok") {
-              $currentIso = result['data']['countryCode'];
-             
-            }
-           
-          },
-          error: function(jqXHR, textStatus, errorThrown) {
-            console.log("it´s not working");
-        }
-       
-        });
-       
-    promise.then(function(){
-    $.ajax({
-    url: "php/information.php",
-    type: 'POST',
-    dataType: 'json',
-    data: {
-      currentIso: $currentIso
-      
-     },
-    success: function(result) {
-      console.log(result);
-        if (result.status.name == "ok") {
-  
-            $('#countryInf').html(result['data']['geonames'][0]['countryName']);
-            $('#currencyInf').html(result['data']['geonames'][0]['currencyCode']);
-            $('#populationInf').html(result['data']['geonames'][0]['population']);
-            $('#capitalInf').html(result['data']['geonames'][0]['capital']);
-            $('#continentInf').html(result['data']['geonames'][0]['continentName']);
-            $('#areaInf').html(result['data']['geonames'][0]['areaInSqKm']);
-  
-        }
-    },
-    error: function(jqXHR, textStatus, errorThrown) {
-        console.log("it´s not working");
-      },
-    })
-  });
-  });
-  });
+  const $btnInf = $('#countryInformation');
 
-/*  
-$(document).ready(() => {
-    const $btnInf = $('#countryInformation');
-  
-  $btnInf.on('click', () => {
-    var promise = $.ajax(
-      {
-        url: "php/countryCode.php",
-        type: 'POST',
-        dataType: 'json',
-        data: {
-  
-            lat: lat ,
-            long: long
-         },
-          success: function(result) {
-            console.log(result);
-            if (result.status.name == "ok") {
-              $currentIso = result['data']['countryCode'];
-             
-            }
-           
-          },
-          error: function(jqXHR, textStatus, errorThrown) {
-            console.log("it´s not working");
-        }
-       
-        });
-       
-    promise.then(function(){
-    $.ajax({
-    url: "php/information.php",
-    type: 'POST',
-    dataType: 'json',
-    data: {
-      currentIso: $currentIso
-      
-     },
-    success: function(result) {
-      console.log(result);
-        if (result.status.name == "ok") {
-  
-            $('#countryInf').html(result['data']['geonames'][0]['countryName']);
-            $('#currencyInf').html(result['data']['geonames'][0]['currencyCode']);
-            $('#populationInf').html(result['data']['geonames'][0]['population']);
-            $('#capitalInf').html(result['data']['geonames'][0]['capital']);
-            $('#continentInf').html(result['data']['geonames'][0]['continentName']);
-            $('#areaInf').html(result['data']['geonames'][0]['areaInSqKm']);
-  
-        }
+$btnInf.on('click', () => {
+$.ajax({
+  url: "php/information.php",
+  type: 'POST',
+  dataType: 'json',
+  data: {
+    currentIso: $( "#inlineFormCustomSelect").val(),
+    
+   },
+  success: function(result) {
+    console.log(result);
+      if (result.status.name == "ok") {
+
+          $('#countryInf').html(result['data']['geonames'][0]['countryName']);
+          $('#currencyInf').html(result['data']['geonames'][0]['currencyCode']);
+          $('#populationInf').html(result['data']['geonames'][0]['population']);
+          $('#capitalInf').html(result['data']['geonames'][0]['capital']);
+          $('#continentInf').html(result['data']['geonames'][0]['continentName']);
+          $('#areaInf').html(result['data']['geonames'][0]['areaInSqKm']);
+
+      }
+  },
+  error: function(jqXHR, textStatus, errorThrown) {
+      console.log("it´s not working");
     },
-    error: function(jqXHR, textStatus, errorThrown) {
-        console.log("it´s not working");
-      },
-    })
-  });
-  });
-  });
- */
+  })
+});
+});
+
     $('#countryInformation').on('click', () => {
       $('.tabla-information').toggle();
     });
@@ -351,7 +268,7 @@ $(window).on("load", ()=>{
               
                 for (i=0; i<result['data']['features']['features'].length ; i++) {
                   var tag = document.createElement('option');
-                  tag.value= result['data']['features']['features'][i]["properties"]["name"] ;
+                  tag.value= result['data']['features']['features'][i]["properties"]["iso_a2"] ;
                   tag.text = result['data']['features']['features'][i]["properties"]["name"] ;
                   var element = document.getElementById('inlineFormCustomSelect');
                   element.appendChild(tag);

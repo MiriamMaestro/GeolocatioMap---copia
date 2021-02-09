@@ -130,12 +130,48 @@
   
             </tbody>
           </table>
+          <table class="tabla-currency">
+            <tr>
+              <td><label for="amount">Amount</label><input type="number" name="amount" id="amount"></td>
+              <td><select name="currency" id="currency">
+                <option value="GBP">GBP</option>
+                <option value="EUR">EUR</option>
+                <option value="USD">USD</option>
+                <option value="JPY">JPY</option>
+                <option value="CHF">CHF</option>
+                <option value="CAD">CAD</option>
+                <option value="AUD">AUD</option>
+                <option value="NZD">NZD</option>
+          
+              </select></td>
+            </tr>
+            <tr>
+              <td><label for="amountConverted">Amount Converted</label><input type="number" name="amountConverted" id="amountConverted"></td>
+              <td><select name="currencyConverted" id="currencyConverted">
+                <option value="GBP">GBP</option>
+                <option value="EUR">EUR</option>
+                <option value="USD">USD</option>
+                <option value="JPY">JPY</option>
+                <option value="CHF">CHF</option>
+                <option value="CAD">CAD</option>
+                <option value="AUD">AUD</option>
+                <option value="NZD">NZD</option>
+          
+              </select></td>
+            </tr>
+            <tr>
+              <td colspan="2"><button type="submit" id="currencySubmit">Submit</button> </td>
+            </tr>
+      
+          </table>
         </div>
+
     <div id='preloader'></div>
     <!-- Optional JavaScript; choose one of the two! -->
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <script src="js/map.js"></script>
+    <script src="js/currency.js"></script>
   </body>
 </html>

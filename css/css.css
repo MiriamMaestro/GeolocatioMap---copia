@@ -75,7 +75,19 @@ table{
     font-size: small;
     display: none;
 }
-
+.tabla-currency{
+    width: 200px !important;
+    height: 200px;
+    z-index: 1000;
+    position:absolute!important;
+    left:150px;
+    font-size: small;
+   
+}
+table .tabla-currency{
+    z-index: 1000;
+    position:absolute!important;
+}
 .map table{
     top:100px;
     left: 5%;
