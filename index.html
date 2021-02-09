@@ -130,9 +130,10 @@
   
             </tbody>
           </table>
+          <form action="">
           <table class="tabla-currency">
             <tr>
-              <td><label for="amount">Amount</label><input type="number" name="amount" id="amount"></td>
+              <td><label for="amount">Amount</label><input type="number" name="amount" id="amount" value="some value"></td>
               <td><select name="currency" id="currency">
                 <option value="GBP">GBP</option>
                 <option value="EUR">EUR</option>
@@ -160,10 +161,11 @@
               </select></td>
             </tr>
             <tr>
-              <td colspan="2"><button type="submit" id="currencySubmit">Submit</button> </td>
+              <td colspan="2"><input type="button" value="Click Me" id="currencySubmit"></td>
             </tr>
       
           </table>
+        </form>
         </div>
 
     <div id='preloader'></div>

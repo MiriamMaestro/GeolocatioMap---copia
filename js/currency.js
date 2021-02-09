@@ -2,20 +2,30 @@
 // set endpoint and your API key
 $(document).ready(()=>{
     const $currencySubmit = $('#currencySubmit');
-    $currencySubmit.submit(function(event){
+    $currencySubmit.on('click', ()=>{
+    
+    var $from= $("#currency").val();
+    var $to= $("#currencyConverted").val();
+    //var $amount= $("#amount").val() ;
+   
         $.ajax({
-            url: '../php/currency.php',   
-            dataType: 'jsonp',
+            url: '../php/currency1.php',   
+            dataType: 'json',
             data:{
-                from: $("#currency").val(),
-                to: $("#currencyConverted").val(),
-                amount: document.getElementById("amount"),
+                base: $from,
+                symbols: $to,
+                //amount: $amount,
             },
             success: function(json) {
         
-                // access the conversion result in json.result
-                alert(json.result);
-                        
+        // exchange rata data is stored in json.rates
+        alert(json.rates.GBP);
+        
+        // base currency is stored in json.base
+        alert(json.base);
+        
+        // timestamp can be accessed in json.timestamp
+        alert(json.timestamp);
             }
         });
     })
