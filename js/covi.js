@@ -13,7 +13,8 @@ $(document).ready(()=>{
             },
             success: function(result) {
                 console.log(result);
-        });
+        }
+    });
     })
     
 });
