@@ -57,6 +57,14 @@ table{
     padding: 10px;
     width: 100px !important;
 }
+.tabla{
+    width: 200px !important;
+    height: 200px;
+    z-index: 1000;
+    position:absolute!important;
+    left:150px;
+    font-size: small;
+}
 .tabla-weather{
     width: 200px !important;
     height: 200px;
@@ -162,7 +170,16 @@ select {
 }
 
 @media (min-width: 768px) {  
-    
+    .tabla{
+        width: 400px !important;
+        height: 400px;
+        z-index: 1000;
+        position:absolute!important;
+        left:200px;
+        font-size: medium;
+        
+          
+    }
     .map table{
         top:20px;
         left:10%;

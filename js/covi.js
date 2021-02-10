@@ -13,6 +13,7 @@ $(document).ready(()=>{
             },
             success: function(result) {
                 console.log(result);
+                $('#confirmed').html(result['data']['confirmed']);
         }
     });
     })
