@@ -51,7 +51,7 @@ table{
     border-radius: 30px;
     
 }
-#th-1{
+.th-1{
     background-color: #009490;
     border-radius: 20px;
     padding: 10px;
@@ -64,6 +64,7 @@ table{
     position:absolute!important;
     left:150px;
     font-size: small;
+    display: none;
 }
 .tabla-weather{
     width: 200px !important;
@@ -177,7 +178,7 @@ select {
         position:absolute!important;
         left:200px;
         font-size: medium;
-        
+        display: none;
           
     }
     .map table{

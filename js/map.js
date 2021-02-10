@@ -96,7 +96,7 @@ $.ajax({
 
           $('#countryInf').html(result['data']['geonames'][0]['countryName']);
           $('#currencyInf').html(result['data']['geonames'][0]['currencyCode']);
-          $('#populationInf').html(result['data']['geonames'][0]['population']);
+          $('#populationInf').html(result['data']['geonames'][0]['population'].toLocaleString());
           $('#capitalInf').html(result['data']['geonames'][0]['capital']);
           $('#continentInf').html(result['data']['geonames'][0]['continentName']);
           $('#areaInf').html(result['data']['geonames'][0]['areaInSqKm']);

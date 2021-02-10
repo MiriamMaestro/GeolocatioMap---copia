@@ -13,15 +13,20 @@ $(document).ready(()=>{
             },
             success: function(result) {
                 console.log(result);
-                $('#confirmed').html(result['data']['confirmed']);
+                $('#confirmed').html(result['data']['confirmed'].toLocaleString());
+                $('#deaths').html(result['data']['deaths'].toLocaleString());
+                $('#recovered').html(result['data']['recovered'].toLocaleString());
+                $('#country-covid').html($country);
         }
     });
     })
     
 });
-/*$('#currencyLink').on('click', () => {
-    $('.tabla-currency').toggle();
+$('#coviLink').on('click', () => {
+    $('.tabla-covi').toggle();
   });
+
+/*
 $('#currency-btn').click(function(){
     $('#currencyLink').click();
   });
