@@ -29,7 +29,7 @@ function onLocationError(e) {
 map.on('locationfound', onLocationFound);
 map.on('locationerror', onLocationError);
 map.locate({setView: false});
-
+/*
 $(document).ready(() => {
   const $btnRun = $('#weather');
   //var isoC = $( "#inlineFormCustomSelect" ).val();
@@ -76,6 +76,8 @@ $('.tabla-weather').toggle();
 });
 
 });
+
+*/
 //Information
 
 $(document).ready(() => {
@@ -221,12 +223,7 @@ $(document).ready(() => {
 cities.addTo(map);
 
   
-  //$('#wikipedia').on('click',addMarker);
 
-  
-$('#weather-btn').click(function(){
-  $('#weather').click();
-});
 $('#information-btn').click(function(){
   $('#countryInformation').click();
 });

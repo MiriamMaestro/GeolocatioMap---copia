@@ -3,9 +3,8 @@
 	$executionStartTime = microtime(true) / 1000;
 
 
-	$url='https://api.openweathermap.org/data/2.5/onecall?lat='.$_REQUEST['lat'].'&lon='.$_REQUEST['long'].'&exclude=hourly&appid=ea7a411ce7acd736e13c1457bcf63da1';
+	$url='http://api.positionstack.com/v1/forward?access_key=96003a68767858a0927a981e6ace5695&query='.$_REQUEST['iso'];
 
-	//$url='api.openweathermap.org/data/2.5/forecast/daily?q='. $_REQUEST['iso'].'&appid=ea7a411ce7acd736e13c1457bcf63da1';
 
 
 	$ch = curl_init();
