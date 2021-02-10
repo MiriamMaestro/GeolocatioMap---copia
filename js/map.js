@@ -206,24 +206,6 @@ $(document).ready(() => {
       });
   });
 
-  //wikipedia 
-
-  function addMarker(e){
-    var wikiIcon = L.icon({
-      iconUrl: 'media/wiki.png',
-      iconSize: [30, 30],})
-    L.marker([51.5, -0.09], {icon: wikiIcon}).addTo(map).bindPopup('<a href="https://en.wikipedia.org/wiki/London">Go to wikipedia</a>');
-    L.marker([51.75, -1.25], {icon: wikiIcon}).addTo(map).bindPopup('<a href="https://en.wikipedia.org/wiki/Oxford">Go to wikipedia</a>');
-    L.marker([53.47, -2.24], {icon: wikiIcon}).addTo(map).bindPopup('<a href="https://en.wikipedia.org/wiki/Manchester">Go to wikipedia</a>');
-    L.marker([52.48, -1.90], {icon: wikiIcon}).addTo(map).bindPopup('<a href="https://en.wikipedia.org/wiki/Birmingham">Go to wikipedia</a>');
-    L.marker([55.95, -3.18], {icon: wikiIcon}).addTo(map).bindPopup('<a href="https://en.wikipedia.org/wiki/Edinburgh">Go to wikipedia</a>');
-    L.marker([55.86, -4.25], {icon: wikiIcon}).addTo(map).bindPopup('<a href="https://en.wikipedia.org/wiki/Glasgow">Go to wikipedia</a>');
-    L.marker([53.35, -6.26], {icon: wikiIcon}).addTo(map).bindPopup('<a href="https://en.wikipedia.org/wiki/Dublin">Go to wikipedia</a>');
-    L.marker([54.60, -5.92], {icon: wikiIcon}).addTo(map).bindPopup('<a href="https://en.wikipedia.org/wiki/Belfast">Go to wikipedia</a>');
-    //map.off('click', addMarker);
-    //$('.wikipedia').on('click',enablewikipedia);
-    //$('#wikipedia').attr("disabled", true);
-  }
   var wikiIcon = L.icon({
     iconUrl: 'media/wiki.png',
     iconSize: [20, 20],});
@@ -247,9 +229,6 @@ $('#weather-btn').click(function(){
 });
 $('#information-btn').click(function(){
   $('#countryInformation').click();
-});
-$('#wikipedia-btn').click(function(){
-  $('#wikipedia').click();
 });
 
 

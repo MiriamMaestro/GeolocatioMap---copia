@@ -82,6 +82,7 @@ table{
     position:absolute!important;
     left:150px;
     font-size: small;
+    display: none;
    
 }
 table .tabla-currency{
@@ -197,7 +198,7 @@ select {
     left: 30px; 
     z-index: 1000;
 }
-#wikipedia-btn{
+#currency-btn{
     position: fixed;
     top: 350px;
     left: 30px; 
@@ -217,7 +218,7 @@ select {
     height: 70px;
     width:70px;
 }
-#wiki-button{
+#currency-button{
     height:70px;
     width:70px;
 }
@@ -241,7 +242,7 @@ button{
     left: 30px; 
     z-index: 1000;
 }
-#wikipedia-btn{
+#currency-btn{
     position: fixed;
     top: 310px;
     left: 30px; 
@@ -261,7 +262,7 @@ button{
     height: 70px;
     width:70px;
 }
-#wiki-button{
+#currency-button{
     height:70px;
     width:70px;
 }

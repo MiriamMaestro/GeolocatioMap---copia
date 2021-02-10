@@ -6,28 +6,32 @@ $(document).ready(()=>{
     
     var $from= $("#currency").val();
     var $to= $("#currencyConverted").val();
-    //var $amount= $("#amount").val() ;
+    var $amount= $("#amount").val() ;
    
         $.ajax({
-            url: '../php/currency1.php',   
+            url: 'php/currency.php',   
             dataType: 'json',
             data:{
                 base: $from,
                 symbols: $to,
                 //amount: $amount,
             },
-            success: function(json) {
-        
-        // exchange rata data is stored in json.rates
-        alert(json.rates.GBP);
-        
-        // base currency is stored in json.base
-        alert(json.base);
-        
-        // timestamp can be accessed in json.timestamp
-        alert(json.timestamp);
+            success: function(result) {
+                var $to= $("#currencyConverted").val();
+                console.log(result);
+                var multiplicar = result['data']['rates']['rates'][$to];
+                var amount = $amount * multiplicar;
+                $('#amountConverted').html(amount);
+                $('#exchange').html(multiplicar);
             }
         });
     })
     
-})
+});
+$('#currencyLink').on('click', () => {
+    $('.tabla-currency').toggle();
+  });
+$('#currency-btn').click(function(){
+    $('#currency').click();
+  });
+  

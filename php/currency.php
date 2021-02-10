@@ -2,13 +2,8 @@
 
 	$executionStartTime = microtime(true) / 1000;
 
-//$from = $_REQUEST['from'];
-  //  $to = $_REQUEST['to'];
-    //$amount = $_REQUEST['amount'];
 
-	$url='https://api.exchangeratesapi.io/latest?symbols='.$_REQUEST['symbols'].'&base='.$_REQUEST['base'].'';
-
-//	$url='https://api.exchangeratesapi.io/latest?symbols=GBP&base=EUR';
+	$url='https://api.exchangeratesapi.io/latest?symbols='.$_REQUEST['symbols'].'&base='.$_REQUEST['base'];
 
 
 	$ch = curl_init();
@@ -26,7 +21,7 @@
 	$output['status']['name'] = "ok";
 	$output['status']['description'] = "mission saved";
 	$output['status']['returnedIn'] = (microtime(true) - $executionStartTime) / 1000 . " ms";
-	$output['data'] = $decode;
+	$output['data']['rates'] = $decode;
 	
 	header('Content-Type: application/json; charset=UTF-8');
 

@@ -27,8 +27,8 @@
           </button>
           <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto mb-2 mb-lg-0 ">
-              <li class="nav-item" id="wikipedia">
-                <a class="nav-link" aria-current="page" href="#">Wikipedia</a>
+              <li class="nav-item" id="currencyLink">
+                <a class="nav-link" aria-current="page" href="#">Currency Converted</a>
               </li>
               <li class="nav-item" id="countryInformation"> 
                 <a class="nav-link" href="#">Country Information</a>
@@ -45,7 +45,7 @@
      
         
       <button type="button" class="icon-btn" id="weather-btn"><img src="media/23529-2-weather-hd.png" id="weather-button"></button>
-      <button type="button" class="icon-btn" id="wikipedia-btn"><img src="media/wiki.png" alt="wikipedia"id="wiki-button"></button>
+      <button type="button" class="icon-btn" id="currency-btn"><img src="media/pngegg.png" alt="currency"id="currency-button"></button>
       <button type="button" class="icon-btn" id="information-btn"><img src="media/Information.png" alt="Information" id="inf-button"></button>
 
 
@@ -130,7 +130,7 @@
   
             </tbody>
           </table>
-          <form action="">
+          
           <table class="tabla-currency">
             <tr>
               <td><label for="amount">Amount</label><input type="number" name="amount" id="amount" value="some value"></td>
@@ -145,9 +145,6 @@
                 <option value="NZD">NZD</option>
           
               </select></td>
-            </tr>
-            <tr>
-              <td><label for="amountConverted">Amount Converted</label><input type="number" name="amountConverted" id="amountConverted"></td>
               <td><select name="currencyConverted" id="currencyConverted">
                 <option value="GBP">GBP</option>
                 <option value="EUR">EUR</option>
@@ -160,12 +157,21 @@
           
               </select></td>
             </tr>
+            
             <tr>
-              <td colspan="2"><input type="button" value="Click Me" id="currencySubmit"></td>
+              <td colspan="3">
+                Exchange Rate: <p id="exchange"></p>
+                Amount converted:<p id="amountConverted"></p>
+                
+              </td>
+
+            </tr>
+            <tr>
+              <td colspan="3"><input type="button" value="Click Me" id="currencySubmit"></td>
             </tr>
       
           </table>
-        </form>
+        
         </div>
 
     <div id='preloader'></div>
