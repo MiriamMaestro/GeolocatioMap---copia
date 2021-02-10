@@ -32,6 +32,6 @@ $('#currencyLink').on('click', () => {
     $('.tabla-currency').toggle();
   });
 $('#currency-btn').click(function(){
-    $('#currency').click();
+    $('#currencyLink').click();
   });
   
