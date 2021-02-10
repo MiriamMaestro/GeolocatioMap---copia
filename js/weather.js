@@ -47,7 +47,7 @@ $(document).ready(() => {
               var fl=result['data']['daily'][0]['feels_like']['day'];
                 $('#temperature').html(temperatureConverter(tiemp)).append(" º");
                 $('#temp-max').html(temperatureConverter(tempM)).append(" º");
-                $('#humidity').html(result['data']['daily'][day]]['humidity']).append(" %");
+                $('#humidity').html(result['data']['daily'][day]['humidity']).append(" %");
                 $('#pressure').html(result['data']['daily'][day]['pressure']);
                 $('#feels-like').html(temperatureConverter(fl)).append(" º");
                 $('#temp-min').html(temperatureConverter(tempm)).append(" º");
