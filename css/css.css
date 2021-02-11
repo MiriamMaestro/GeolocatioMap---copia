@@ -94,6 +94,15 @@ table{
     display: none;
    
 }
+.tabla-time{
+    width: 200px !important;
+    height: 100px;
+    z-index: 1000;
+    position:absolute!important;
+    left:150px;
+    font-size: small;
+    display: none;
+}
 table .tabla-currency{
     z-index: 1000;
     position:absolute!important;
@@ -203,6 +212,15 @@ select {
         font-size: medium;
         display: none;
     }
+    .tabla-time{
+        width: 300px !important;
+        height: 250px;
+        z-index: 1000;
+        position:absolute!important;
+        left:200px;
+        font-size: medium;
+        display: none;
+    }
     .nav-link{
         color:#004e59;
         font-size: larger;
@@ -223,6 +241,12 @@ select {
 #information-btn{
     position: fixed;
     top: 450px;
+    left: 30px; 
+    z-index: 1000;
+}
+#time-btn{
+    position: fixed;
+    top: 550px;
     left: 30px; 
     z-index: 1000;
 }
@@ -325,19 +349,19 @@ button{
 }
 #weather-btn{
     position: fixed;
-    top: 210px;
+    top: 200px;
     left: 30px; 
     z-index: 1000;
 }
 #currency-btn{
     position: fixed;
-    top: 310px;
+    top: 300px;
     left: 30px; 
     z-index: 1000;
 }
 #information-btn{
     position: fixed;
-    top: 410px;
+    top: 400px;
     left: 30px; 
     z-index: 1000;
 }
@@ -353,6 +377,14 @@ button{
     height:70px;
     width:70px;
 }
+#time-button{
+    height:70px;
+    width:70px;
+    position: fixed;
+    top: 500px;
+    left: 30px; 
+    z-index: 1000;
+}
 button{
     background-color:transparent !important; ;
     border: 0px;
@@ -362,6 +394,7 @@ button{
     height: 250px !important;
     width: 250px !important;
 }
+
  }
 
 /* class applies to select element itself, not a wrapper element */

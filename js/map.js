@@ -1,5 +1,6 @@
 var latitudecurrent;
 var longitudecurrent;
+var currentCountry;
 
 $(window).on('load', function () {    if ($('#preloader').length) {
   $('#preloader').delay(100).fadeOut('slow', function () {
@@ -13,20 +14,27 @@ L.tileLayer.provider('MapBox', {
   accessToken: 'pk.eyJ1IjoieW9zb3ltYWlyaW0iLCJhIjoiY2trOGoyb2oxMDk2eDJ2czlzNm0wbnVmaSJ9.HvIfpKYqyZHeCNZPIpPSaw'
 }).addTo(map);
 */
+
+
 var mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
-'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-mbUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoieW9zb3ltYWlyaW0iLCJhIjoiY2trOGoyb2oxMDk2eDJ2czlzNm0wbnVmaSJ9.HvIfpKYqyZHeCNZPIpPSaw';
+    'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+  mbUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoieW9zb3ltYWlyaW0iLCJhIjoiY2trOGoyb2oxMDk2eDJ2czlzNm0wbnVmaSJ9.HvIfpKYqyZHeCNZPIpPSaw';
 
-var street   = L.tileLayer(mbUrl, {id: 'mapbox/streets-v11', tileSize: 512, zoomOffset: -1, attribution: mbAttr}),
-streets  = L.tileLayer(mbUrl, {id: 'mapbox/satellite-streets-v11', tileSize: 512, zoomOffset: -1, attribution: mbAttr});
+var grayscale   = L.tileLayer(mbUrl, {id: 'mapbox/streets-v11', tileSize: 512, zoomOffset: -1, attribution: mbAttr}),
+  streets  = L.tileLayer(mbUrl, {id: 'mapbox/satellite-v9', tileSize: 512, zoomOffset: -1, attribution: mbAttr});
 
+var map = L.map('map', {
+  layers: [grayscale]
+});
 
 var baseLayers = {
-"Streets": street,
-"Satelite streets": streets
+  "Street": grayscale,
+  "Satelite": streets
 };
 
+
 L.control.layers(baseLayers).addTo(map);
+
 /* */
 function onLocationFound(e) {
   var radius = e.accuracy / 2;
@@ -176,6 +184,7 @@ $(document).ready(() => {
                   console.log(result);
                   if (result.status.name == "ok") {
                     $currentCountry = result['data'][0]['components']['country'];
+                    currentCountry = $currentCountry
       
                   }
                  

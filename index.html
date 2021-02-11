@@ -39,18 +39,19 @@
               <li class="nav-item" id="coviLink">
                 <a class="nav-link" href="#">Covid Situation</a>
               </li>
+              <li class="nav-item" id="timeLink">
+                <a class="nav-link" href="#">Time Zone</a>
+              </li>
 
             </ul>
             
           </div>
         </div>
       </nav>
-     
-        
       <button type="button" class="icon-btn" id="weather-btn"><img src="media/23529-2-weather-hd.png" id="weather-button"></button>
       <button type="button" class="icon-btn" id="currency-btn"><img src="media/pngegg.png" alt="currency"id="currency-button"></button>
       <button type="button" class="icon-btn" id="information-btn"><img src="media/Information.png" alt="Information" id="inf-button"></button>
-
+      <button type="button" class="icon-btn" id="time-btn"><img src="media/time.png" alt="time" id="time-button"></button>
 
       <div id="map" class="map">
       
@@ -191,19 +192,42 @@
               <th colspan="2" class="th-1">Country Covid Information</th>
             </tr>
             <tr>
-              <td>Country</td>
+              <th scope="row">Country</th>
               <td id="country-covid"></td>
             </tr>
             <tr>
-              <td>Deaths</td>
+              <th scope="row">Deaths</th>
               <td id="deaths"></td>
             </tr>
             <tr>
-              <td>Recovered</td>
+              <th scope="row">Recovered</th>
               <td id="recovered"></td>
             </tr>
-            <td>Confirmed</td>
+            <th scope="row">Confirmed</th>
             <td id="confirmed"></td>
+          </table>
+          <table class="tabla tabla-time">
+            <tr>
+              <th colspan="2" class="th-1">Time Zone</th>
+            </tr>
+            <tr>
+              <th scope="row">Country</th>
+              <td id="country-zone"></td>
+            </tr>
+            <tr>
+              <th scope="row">Country Hour</th>
+              <td id="country-hour"></td>
+            </tr>
+            <tr>
+              <th scope="row">Time zone name</th>
+              <td id="timezone-name"></td>
+            </tr>
+            <tr>
+              <th scope="row">GMT </th>
+              <td id="gmt"></td>
+            </tr>
+
+
           </table>
         
         </div>
@@ -220,6 +244,6 @@
     <script src="js/weather.js"></script>
     <script src="js/dates.js"></script>
     <script src="js/flag.js"></script>
-    <script src="js/mapa.js"></script>
+    <script src="js/timeZone.js"></script>
   </body>
 </html>
