@@ -34,26 +34,30 @@ $(document).ready(() => {
         },
         success: function(result) {
           console.log(result);
+          
             if (result.status.name == "ok") {
               function temperatureConverter(valNum) {
                 valNum = parseFloat(valNum);
                 dec = valNum-273.15;
                 return parseFloat(dec).toFixed(0);
               }
-              var day = $( "#inlineFormCustomSelect").val();
-              var tiemp = result['data']['daily'][day]['temp']['day'];
-              var tempM =result['data']['daily'][day]['temp']['max'];
-              var tempm =result['data']['daily'][day]['temp']['min'];
-              var fl=result['data']['daily'][0]['feels_like']['day'];
-                $('#temperature').html(temperatureConverter(tiemp)).append(" º");
-                $('#temp-max').html(temperatureConverter(tempM)).append(" º");
-                $('#humidity').html(result['data']['daily'][day]['humidity']).append(" %");
-                $('#pressure').html(result['data']['daily'][day]['pressure']);
-                $('#feels-like').html(temperatureConverter(fl)).append(" º");
-                $('#temp-min').html(temperatureConverter(tempm)).append(" º");
-                $('#description').html(result['data']['daily'][day]['weather'][0]['main']);
-                $('#city').html($( "#inlineFormCustomSelect option:selected" ).text());
-      
+              $('#day').on('change', ()=>{
+                var day = $( "#day").val();
+                var tiemp = result['data']['daily'][day]['temp']['day'];
+                var tempM =result['data']['daily'][day]['temp']['max'];
+                var tempm =result['data']['daily'][day]['temp']['min'];
+                var fl=result['data']['daily'][0]['feels_like']['day'];
+                  $('#temperature').html(temperatureConverter(tiemp)).append(" º");
+                  $('#temp-max').html(temperatureConverter(tempM)).append(" º");
+                  $('#humidity').html(result['data']['daily'][day]['humidity']).append(" %");
+                  $('#pressure').html(result['data']['daily'][day]['pressure']);
+                  $('#feels-like').html(temperatureConverter(fl)).append(" º");
+                  $('#temp-min').html(temperatureConverter(tempm)).append(" º");
+                  $('#description').html(result['data']['daily'][day]['weather'][0]['main']);
+                  $('#city').html($( "#inlineFormCustomSelect option:selected" ).text());
+        
+              });
+
             }
         },
         error: function(jqXHR, textStatus, errorThrown) {
