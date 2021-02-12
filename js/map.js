@@ -7,13 +7,7 @@ $(window).on('load', function () {    if ($('#preloader').length) {
   $(this).remove();
 });
 }})
-/*
-var map = L.map('map').fitWorld();
-L.tileLayer.provider('MapBox', {
-  id: 'mapbox/streets-v11',
-  accessToken: 'pk.eyJ1IjoieW9zb3ltYWlyaW0iLCJhIjoiY2trOGoyb2oxMDk2eDJ2czlzNm0wbnVmaSJ9.HvIfpKYqyZHeCNZPIpPSaw'
-}).addTo(map);
-*/
+
 
 
 var mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
@@ -53,55 +47,7 @@ function onLocationError(e) {
 map.on('locationfound', onLocationFound);
 map.on('locationerror', onLocationError);
 map.locate({setView: false});
-/*
-$(document).ready(() => {
-  const $btnRun = $('#weather');
-  //var isoC = $( "#inlineFormCustomSelect" ).val();
 
-$btnRun.on('click', () => {
-  $.ajax({
-  url: "php/weathercountry.php",
-  type: 'POST',
-  dataType: 'json',
-  data: {
-   // iso: (isoC= "") ? currentIso: $isoC,
-   iso: $( "#inlineFormCustomSelect option:selected" ).text(),
-  },
-  success: function(result) {
-    console.log(result);
-      if (result.status.name == "ok") {
-        function temperatureConverter(valNum) {
-          valNum = parseFloat(valNum);
-          dec = valNum-273.15;
-          return parseFloat(dec).toFixed(0);
-        }
-        
-        var tiemp = result['data']['main']['temp'];
-        var tempM =result['data']['main']['temp_max'];
-        var tempm =result['data']['main']['temp_min'];
-        var fl=result['data']['main']['feels_like'];
-          $('#temperature').html(temperatureConverter(tiemp)).append(" º");
-          $('#temp-max').html(temperatureConverter(tempM)).append(" º");
-          $('#humidity').html(result['data']['main']['humidity']).append(" %");
-          $('#pressure').html(result['data']['main']['pressure']);
-          $('#feels-like').html(temperatureConverter(fl)).append(" º");
-          $('#temp-min').html(temperatureConverter(tempm)).append(" º");
-          $('#description').html(result['data']['weather'][0]['main']);
-          $('#city').html(result['data']['name']);
-
-      }
-  },
-  error: function(jqXHR, textStatus, errorThrown) {
-      console.log("it´s not working");
-  }
-}); 
-}).on('click', () => {
-$('.tabla-weather').toggle();
-});
-
-});
-
-*/
 //Information
 
 $(document).ready(() => {
@@ -285,4 +231,60 @@ $(window).on("load", ()=>{
          
           });
         });
-       
+    
+
+$('#monumentsLink').on('click', function(){
+          var $country=  $( "#inlineFormCustomSelect option:selected" ).text();
+          
+          $.ajax({
+                  url: 'php/monuments.php',   
+                  dataType: 'json',
+                  data:{
+                      country: $country
+                  },
+                  success: function(result) {
+                      console.log(result);                      
+                          var monument1 = L.marker([result['data']['response']['groups'][0]['items'][0]['venue']['location']['lat'], result['data']['response']['groups'][0]['items'][0]['venue']['location']['lng']]).bindPopup(result['data']['response']['groups'][0]['items'][0]['venue']['name']),
+                          monument2 = L.marker([result['data']['response']['groups'][0]['items'][1]['venue']['location']['lat'], result['data']['response']['groups'][0]['items'][1]['venue']['location']['lng']]).bindPopup(result['data']['response']['groups'][0]['items'][1]['venue']['name']),
+                          monument3 = L.marker([result['data']['response']['groups'][0]['items'][2]['venue']['location']['lat'], result['data']['response']['groups'][0]['items'][2]['venue']['location']['lng']]).bindPopup(result['data']['response']['groups'][0]['items'][2]['venue']['name']),
+                          monument4 = L.marker([result['data']['response']['groups'][0]['items'][3]['venue']['location']['lat'], result['data']['response']['groups'][0]['items'][3]['venue']['location']['lng']]).bindPopup(result['data']['response']['groups'][0]['items'][3]['venue']['name']),
+                          monument5 = L.marker([result['data']['response']['groups'][0]['items'][4]['venue']['location']['lat'], result['data']['response']['groups'][0]['items'][4]['venue']['location']['lng']]).bindPopup(result['data']['response']['groups'][0]['items'][4]['venue']['name']);
+                          var monuments =  L.layerGroup([monument1, monument2, monument3, monument4, monument5]);
+                         monument = monuments
+                          // monuments.addTo(map);    
+                          if(map.hasLayer(monument)) {
+                            $(this).removeClass('selected');
+                            map.removeLayer(monument);
+                        } else {
+                            map.addLayer(monument);        
+                            $(this).addClass('selected');
+                       }                 
+     }
+  });
+          
+
+});
+var monument;
+/*
+      $("#monumentsLink").click(function(event) {
+          //event.preventDefault();
+          if(map.hasLayer(monument)) {
+              $(this).removeClass('selected');
+              map.removeLayer(monument);
+          } else {
+              map.addLayer(monument);        
+              $(this).addClass('selected');
+         }
+      });
+
+
+  /*  $.when().done(function(event){
+      event.preventDefault();
+      if(map.hasLayer(monument)) {
+          $(this).removeClass('selected');
+          map.removeLayer(monument);
+      } else {
+          map.addLayer(monument);        
+          $(this).addClass('selected');
+     }
+    }) */
