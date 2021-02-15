@@ -1,3 +1,5 @@
+
+/*
 $(document).ready(() => {
     const $btnInf = $('#countryInformation');
   
@@ -10,3 +12,5 @@ $(document).ready(() => {
     
   });
   });
+
+  */

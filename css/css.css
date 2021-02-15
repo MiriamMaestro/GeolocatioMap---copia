@@ -66,42 +66,9 @@ table{
     font-size: small;
     display: none;
 }
-.tabla-weather{
-    width: 200px !important;
-    height: 200px;
-    z-index: 1000;
-    position:absolute!important;
-    left:150px;
-    font-size: small;
-    display: none;
-}
-.tabla-information{
-    width: 200px !important;
-    height: 200px;
-    z-index: 1000;
-    position:absolute!important;
-    left:150px;
-    font-size: small;
-    display: none;
-}
-.tabla-currency{
-    width: 200px !important;
-    height: 200px;
-    z-index: 1000;
-    position:absolute!important;
-    left:150px;
-    font-size: small;
-    display: none;
-   
-}
+
 .tabla-time{
-    width: 200px !important;
-    height: 100px;
-    z-index: 1000;
-    position:absolute!important;
-    left:150px;
-    font-size: small;
-    display: none;
+    height: 100px !important;
 }
 table .tabla-currency{
     z-index: 1000;
@@ -194,24 +161,6 @@ select {
         right: 0;
         bottom: 0;
     }
-    .tabla-weather{
-        width: 400px !important;
-        height: 400px;
-        z-index: 1000;
-        position:absolute!important;
-        left:200px;
-        font-size: medium;
-        display: none;
-    }
-    .tabla-information{
-        width: 400px !important;
-        height: 400px;
-        z-index: 1000;
-        position:absolute!important;
-        left:200px;
-        font-size: medium;
-        display: none;
-    }
     .tabla-time{
         width: 300px !important;
         height: 250px;
@@ -250,18 +199,7 @@ select {
     left: 30px; 
     z-index: 1000;
 }
-#inf-button{
-    height: 70px;
-    width:70px;
-}
-#weather-button{
-    height: 70px;
-    width:70px;
-}
-#currency-button{
-    height:70px;
-    width:70px;
-}
+
 button{
     background-color:transparent !important; ;
     border: 0px;
@@ -342,10 +280,14 @@ button{
 @media (min-width: 992px) {
        
 .map table{
-    top:100px;
+    top:80px;
     left: 10%;
     right: 0;
     bottom: 0;
+}
+.tabla-covid{
+    height: 250px;
+    width: 300px;
 }
 #weather-btn{
     position: fixed;
@@ -365,21 +307,11 @@ button{
     left: 30px; 
     z-index: 1000;
 }
-#inf-button{
-    height: 70px;
-    width:70px;
-}
-#weather-button{
-    height: 70px;
-    width:70px;
-}
-#currency-button{
+button img{
     height:70px;
     width:70px;
 }
 #time-button{
-    height:70px;
-    width:70px;
     position: fixed;
     top: 500px;
     left: 30px; 
