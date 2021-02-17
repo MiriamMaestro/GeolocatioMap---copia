@@ -17,7 +17,7 @@ $(document).ready(()=>{
                 //amount: $amount,
             },
             success: function(result) {
-                $(".tabla-currency").siblings().css( "display", "none" );
+                $(".tabla-currency").siblings().css("display", "none");
                 var $to= $("#currencyConverted").val();
                 console.log(result);
                 var multiplicar = result['data']['rates']['rates'][$to];

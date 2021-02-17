@@ -70,10 +70,7 @@ table{
 .tabla-time{
     height: 100px !important;
 }
-table .tabla-currency{
-    z-index: 1000;
-    position:absolute!important;
-}
+
 .map table{
     top:100px;
     left: 5%;
@@ -145,6 +142,11 @@ select {
 }
 
 @media (min-width: 768px) {  
+    select {
+        top:10px;
+        right: 8%;
+        bottom: 0;
+    }
     .tabla{
         width: 400px !important;
         height: 400px;
@@ -325,7 +327,7 @@ button{
 .tabla-currency{
     height: 250px !important;
     width: 250px !important;
-    display: none;
+    
 }
 
  }

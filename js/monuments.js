@@ -1,6 +1,11 @@
 
 $("#inlineFormCustomSelect").change(function () {
     var $country=  $( "#inlineFormCustomSelect option:selected" ).text();
+    if($country=='United Kingdom'){
+        $country = 'UK'; 
+      } else if($country=="United States"){
+        $country="USA"
+    };
     $.ajax({
 
         url: 'php/monuments.php',   
