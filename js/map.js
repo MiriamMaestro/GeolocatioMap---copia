@@ -96,8 +96,8 @@ function showPosition(position) {
     $(window).on("load", getLocation);
 
 
-    $(document).ready(() => {
-      $(window).on("load", ()=>{
+$(document).ready(() => {
+  $(window).on("load", ()=>{
         
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position){
@@ -121,6 +121,12 @@ function showPosition(position) {
                       currentCountry = $currentCountry;
                       $currentIso = result['data'][0]['components']['ISO_3166-1_alpha-2'];
                       currentIso = $currentIso; 
+                      var tag = document.createElement('option');
+                      tag.value= currentIso;
+                      tag.text = currentCountry ;
+                      var element = document.getElementById('inlineFormCustomSelect');
+                      element.appendChild(tag);
+                      
                     }
                    
                   },
@@ -188,6 +194,34 @@ function showPosition(position) {
     
                   })
               });
+              promise.then(function(){
+     
+                $.ajax(
+                  {
+                    url: "php/countryList.php",
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function(result) {
+                        console.log(result);
+                        
+                          for (i=0; i<result['data'].length ; i++) {
+                            var tag = document.createElement('option');
+                            tag.value= result['data'][i]["code"] ;
+                            tag.text = result['data'][i]["name"] ;
+                            var element = document.getElementById('inlineFormCustomSelect');
+                            element.appendChild(tag);
+                            
+                        }
+          
+          
+                      
+                      },
+                      error: function(jqXHR, textStatus, errorThrown) {
+                        console.log("it´s not working");
+                    }
+                   
+                    });
+              })
           });
         
           }
@@ -196,110 +230,5 @@ function showPosition(position) {
     });
 
 
-  
-//current country
-/*
-$(document).ready(() => {
-    $(window).on("load", ()=>{
-      
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position){
-         
-          var promise = $.ajax(
-            {
-              url: "php/currentLocation.php",
-              type: 'POST',
-              dataType: 'json',
-              data: {
-        
-                  currentLat: position.coords.latitude,
-                  currentLong: position.coords.longitude
-               },
-               
-    
-                success: function(result) {
-                  console.log(result);
-                  if (result.status.name == "ok") {
-                    $currentCountry = result['data'][0]['components']['country'];
-                    currentCountry = $currentCountry
-      
-                  }
-                 
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                  console.log("it´s not working");
-              }
-             
-              });
-              promise.then(function(){
-                //
-                $.ajax({
-                  url: "php/codigo.php",
-                  type: 'POST',
-                  dataType: 'json',
-                  data: {
-            
-                      currentCountry: $currentCountry,
-                      
-                   },
-                    success: function(result) {
-                      //alert('AJAX call was successful!');
 
-                      var myStyle = {
-                        "color": "#fff200",
-                        "weight": 5,
-                        "opacity": 1
-                      };
-    
-                      border = L.geoJSON(result,{
-                        style: myStyle
-                      }).addTo(map);
-                      
-                      map.fitBounds(border.getBounds());
-
-                    },
-                    error: function() {
-                      alert('There was some error performing the AJAX call!');
-                    },
-                })
-            });
-        });
-      
-        }
-     
-      });
-  });
-*/
-
-
-
-
-$(window).on("load", ()=>{
-      
- $.ajax(
-        {
-          url: "php/countryList.php",
-          type: 'POST',
-          dataType: 'json',
-          success: function(result) {
-              console.log(result);
-              
-                for (i=0; i<result['data'].length ; i++) {
-                  var tag = document.createElement('option');
-                  tag.value= result['data'][i]["code"] ;
-                  tag.text = result['data'][i]["name"] ;
-                  var element = document.getElementById('inlineFormCustomSelect');
-                  element.appendChild(tag);
-                  
-              }
-
-
-            
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-              console.log("it´s not working");
-          }
-         
-          });
-        });
 

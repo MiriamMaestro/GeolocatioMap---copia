@@ -14,6 +14,7 @@ $("#inlineFormCustomSelect").change(function () {
 
         },
         success: function (result) {
+            
             if(!map.hasLayer(monument)){
                 var monument1 = L.marker([result['data']['response']['groups'][0]['items'][0]['venue']['location']['lat'], result['data']['response']['groups'][0]['items'][0]['venue']['location']['lng']]).bindPopup(result['data']['response']['groups'][0]['items'][0]['venue']['name'])
                 monument2 = L.marker([result['data']['response']['groups'][0]['items'][1]['venue']['location']['lat'], result['data']['response']['groups'][0]['items'][1]['venue']['location']['lng']]).bindPopup(result['data']['response']['groups'][0]['items'][1]['venue']['name'])

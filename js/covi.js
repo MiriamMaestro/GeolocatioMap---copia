@@ -13,6 +13,8 @@ $(document).ready(()=>{
             },
             success: function(result) {
                 console.log(result);
+                $(".tabla-covi").siblings().css( "display", "none" );
+
                 $('#confirmed').html(result['data']['confirmed'].toLocaleString());
                 $('#deaths').html(result['data']['deaths'].toLocaleString());
                 $('#recovered').html(result['data']['recovered'].toLocaleString());
@@ -23,7 +25,7 @@ $(document).ready(()=>{
     
 });
 $('#coviLink').on('click', () => {
-    $('.tabla-covi').toggle();
+    $('.tabla-covi').delay(1000).fadeToggle();
   });
 
 /*

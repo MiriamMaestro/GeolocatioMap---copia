@@ -17,6 +17,7 @@ $(document).ready(() => {
             targetLocation: $country
         },
         success: function(result) {
+          $(".tabla-time").siblings().css( "display", "none" );
             var time = result['data']['target_location']['datetime'];
             var values = time.split(/T| /);
             var f_time = values[1];
@@ -32,7 +33,7 @@ $(document).ready(() => {
   });
   });
   $('#timeLink').on('click', () => {
-    $('.tabla-time').toggle();
+    $('.tabla-time').delay(1000).fadeToggle();
   });
   $('#time-btn').click(function(){
     $('#timeLink').click();
