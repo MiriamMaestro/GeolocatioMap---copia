@@ -1,5 +1,3 @@
-
-// set endpoint and your API key
 $(document).ready(()=>{
     const $currencySubmit = $('#currencySubmit');
     $currencySubmit.on('click', ()=>{
@@ -14,12 +12,10 @@ $(document).ready(()=>{
             data:{
                 base: $from,
                 symbols: $to,
-                //amount: $amount,
-            },
+                },
             success: function(result) {
                 
                 var $to= $("#currencyConverted").val();
-                console.log(result);
                 var multiplicar = result['data']['rates']['rates'][$to];
                 var amount = $amount * multiplicar;
                 $('#amountConverted').html(amount);

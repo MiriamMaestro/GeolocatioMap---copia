@@ -27,10 +27,7 @@ $("#inlineFormCustomSelect").change(function () {
 
                   border = L.geoJSON(result['data']['border'],{
                     style: myStyle
-                  }).addTo(map);
-                  
-                 // map.fitBounds(border.getBounds());
-                  
+                  }).addTo(map);               
 
             } 
             

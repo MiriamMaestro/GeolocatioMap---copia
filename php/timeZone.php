@@ -4,7 +4,6 @@
 $executionStartTime = microtime(true) / 1000;
 
 
-//$url='https://timezone.abstractapi.com/v1/current_time?api_key=27f3383acb624be3b9dd0987a31a807e&location='.$_REQUEST['country'];
 $url='https://timezone.abstractapi.com/v1/convert_time?api_key=27f3383acb624be3b9dd0987a31a807e&base_location='.$_REQUEST['baseLocation'].'&base_datetime='.$_REQUEST['baseDatetime'].'&target_location='.$_REQUEST['targetLocation'];
 
 

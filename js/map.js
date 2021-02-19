@@ -50,15 +50,14 @@ var overLayers = {
 
 L.control.layers(baseLayers, overLayers).addTo(map);
 
-//cities.addTo(map);
 
-
-
-/* */
 function onLocationFound(e) {
   var radius = e.accuracy / 2;
+  var localIcon = L.icon({
+    iconUrl: 'media/japan.png',
+    iconSize: [40, 40],});
 
-  L.marker(e.latlng).addTo(map)
+  L.marker(e.latlng,{icon: localIcon}).addTo(map)
   .bindPopup("You are here")
       
   L.circle(e.latlng, radius).addTo(map);
@@ -90,8 +89,6 @@ function showPosition(position) {
       latitudecurrent = latitudec;
       var longitudec = position.coords.longitude;
       longitudecurrent = longitudec;
-      //alert("Latitude: " + latitudecurrent +      "<br>Longitude: " + longitudecurrent);
-      //alert("Latitude: " + latitudec +      "<br>Longitude: " + longitudec);
     }
     $(window).on("load", getLocation);
 
@@ -115,7 +112,6 @@ $(document).ready(() => {
                  
       
                   success: function(result) {
-                    console.log(result);
                     if (result.status.name == "ok") {
                       $currentCountry = result['data'][0]['components']['country'];
                       currentCountry = $currentCountry;
@@ -147,8 +143,6 @@ $(document).ready(() => {
                         
                     },
                       success: function(result) {
-                        //alert('AJAX call was successful!');
-
                         var myStyle = {
                           "color": "#fff200",
                           "weight": 5,
@@ -182,11 +176,15 @@ $(document).ready(() => {
             
                     },
                     success: function (result) {
-                        var monument1 = L.marker([result['data']['response']['groups'][0]['items'][0]['venue']['location']['lat'], result['data']['response']['groups'][0]['items'][0]['venue']['location']['lng']]).bindPopup(result['data']['response']['groups'][0]['items'][0]['venue']['name'])
-                            monument2 = L.marker([result['data']['response']['groups'][0]['items'][1]['venue']['location']['lat'], result['data']['response']['groups'][0]['items'][1]['venue']['location']['lng']]).bindPopup(result['data']['response']['groups'][0]['items'][1]['venue']['name'])
-                            monument3 = L.marker([result['data']['response']['groups'][0]['items'][2]['venue']['location']['lat'], result['data']['response']['groups'][0]['items'][2]['venue']['location']['lng']]).bindPopup(result['data']['response']['groups'][0]['items'][2]['venue']['name'])
-                            monument4 = L.marker([result['data']['response']['groups'][0]['items'][3]['venue']['location']['lat'], result['data']['response']['groups'][0]['items'][3]['venue']['location']['lng']]).bindPopup(result['data']['response']['groups'][0]['items'][3]['venue']['name'])
-                            monument5 = L.marker([result['data']['response']['groups'][0]['items'][4]['venue']['location']['lat'], result['data']['response']['groups'][0]['items'][4]['venue']['location']['lng']]).bindPopup(result['data']['response']['groups'][0]['items'][4]['venue']['name'])
+                      var monumentIcon = L.icon({
+                        iconUrl: 'media/mecca.png',
+                        iconSize: [30, 30],});
+                       
+                        var monument1 = L.marker([result['data']['response']['groups'][0]['items'][0]['venue']['location']['lat'], result['data']['response']['groups'][0]['items'][0]['venue']['location']['lng']], {icon: monumentIcon}).bindPopup(result['data']['response']['groups'][0]['items'][0]['venue']['name'])
+                            monument2 = L.marker([result['data']['response']['groups'][0]['items'][1]['venue']['location']['lat'], result['data']['response']['groups'][0]['items'][1]['venue']['location']['lng']], {icon: monumentIcon}).bindPopup(result['data']['response']['groups'][0]['items'][1]['venue']['name'])
+                            monument3 = L.marker([result['data']['response']['groups'][0]['items'][2]['venue']['location']['lat'], result['data']['response']['groups'][0]['items'][2]['venue']['location']['lng']], {icon: monumentIcon}).bindPopup(result['data']['response']['groups'][0]['items'][2]['venue']['name'])
+                            monument4 = L.marker([result['data']['response']['groups'][0]['items'][3]['venue']['location']['lat'], result['data']['response']['groups'][0]['items'][3]['venue']['location']['lng']], {icon: monumentIcon}).bindPopup(result['data']['response']['groups'][0]['items'][3]['venue']['name'])
+                            monument5 = L.marker([result['data']['response']['groups'][0]['items'][4]['venue']['location']['lat'], result['data']['response']['groups'][0]['items'][4]['venue']['location']['lng']], {icon: monumentIcon}).bindPopup(result['data']['response']['groups'][0]['items'][4]['venue']['name'])
                             var monuments =  L.layerGroup([monument1, monument2, monument3, monument4, monument5]);
                            monument = monuments;
                            monument.addTo(map); 
@@ -202,8 +200,6 @@ $(document).ready(() => {
                     type: 'POST',
                     dataType: 'json',
                     success: function(result) {
-                        console.log(result);
-                        
                           for (i=0; i<result['data'].length ; i++) {
                             var tag = document.createElement('option');
                             tag.value= result['data'][i]["code"] ;

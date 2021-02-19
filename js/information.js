@@ -12,7 +12,6 @@ $.ajax({
     
    },
   success: function(result) {
-    console.log(result);
     $(".tabla-information").siblings().css( "display", "none" );
       if (result.status.name == "ok") {
           $('#countryInf').html(result['data']['geonames'][0]['countryName']);
